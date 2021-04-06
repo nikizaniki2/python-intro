@@ -56,8 +56,9 @@ def count_substrings(sentence, sub):
     print(count)
     return count
 
-###############unfinished################
-def dictionary(start, end):
+###############overly complicated...################
+############### UNUSED ################
+def dictionary_generator(start, end):
     diff = end - start
     diff = abs(diff)
     key_list = []
@@ -72,9 +73,37 @@ def dictionary(start, end):
             continue
         dic = dic+", "+temp_dic
     key_list.append(dic)
-    print(key_list)
+### How do I convert key_list(list) -> key_list(dic)
+### ['3:2, 4:1, 5:0'] -> {3:2, 4:1, 5:0}
+    final_dic = {str(key_list[0])}
+### Fixed by simply creating a dic
+### and filling it with the value of the list key_list[0]
+
+### doesn't work as it counts the whole str as 1 key
+    print(final_dic)
+############### UNUSED ################
 
 
+def new_dict_generator(start, end):
+    dict_final= ""
+    diff = end - start
+    diff = abs(diff)
+    list_of_keys = []
+    for i in range(diff+1):
+        temp_key = i+start
+        list_of_keys.append(temp_key)
+
+    dict_final = dict.fromkeys(list_of_keys, 0)
+
+    for i in range(diff+1):
+        value = 5%(i+start)
+        temp_key = i+start
+        temp_value = int(round(value))
+        temp_update = {temp_key:temp_value}
+        dict_final.update(temp_update)
+    print(dict_final)
+
+import books
 a = input("Value of a: ")
 b = input("Value of b: ")
 c = input("Value of c: ")
@@ -92,6 +121,5 @@ print("Number of times the word ""word"" is repeated: ", word_counter(['list','p
 print("Sub strings This is this and that is this. ~this~")
 count_substrings("This is this and that is this", "this")
 
-print("Library - UNFINISHED")
 print("Key/Value between 3 and 5: ")
-dictionary(3,5)
+new_dict_generator(3,5)
