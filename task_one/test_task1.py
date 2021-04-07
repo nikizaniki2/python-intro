@@ -1,6 +1,39 @@
 from task1 import *
 from books import *
 
+both = [
+{'title': 'Python Tricks: A Buffet of Awesome Python Features',
+ 'author': 'Dan Bader',
+ 'genre': 'programming Python',
+ 'detail': {
+	 'publication_year': 2017,
+	 'isbn-13': 9781775093305,
+	 'language': 'English',
+	 'pages': 302
+	 }},
+ {'title': 'Fluent Python: Clear, Concise, and Effective Programming',
+ 'author': 'Luciano Ramalho',
+ 'genre': 'programming Python',
+	 'detail': {
+	 'publication_year': 2015,
+	 'isbn-13': 9781491946008,
+	 'language': 'English',
+	 'pages': 792}
+ }]
+
+single = [
+{'title': 'Python Tricks: A Buffet of Awesome Python Features',
+ 'author': 'Dan Bader',
+ 'genre': 'programming Python',
+ 'detail': {
+	 'publication_year': 2017,
+	 'isbn-13': 9781775093305,
+	 'language': 'English',
+	 'pages': 302
+	 }
+    }
+    ]
+
 def test_triangle():
     assert triangle_type(1, 1, 1) == "равностранен"
     assert triangle_type(1.41, 1.41, 2) == "равнобедрен"
@@ -37,6 +70,6 @@ def test_find_book_by_title():
     assert find_book_by_title("asd") == None
 
 def test_find_book():
-    assert find_book("genre", "program") == ['9781775093305', '9781491946008']
-    assert find_book("author", "Luciano") == ['9781491946008']
-    assert find_book("title", "Python") == 'Python Tricks: A Buffet of Awesome Python Features'
+    assert find_book("genre", "program") == both
+    assert find_book("author", "Dan") == single
+    assert find_book("title", "Python") == both

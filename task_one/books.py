@@ -23,11 +23,25 @@ books = [
     }
 ]
 
+def return_books(list_of_ids):
+    #book_dict = dict.fromkeys(list_of_ids, empty_book)
+    book_dict = []
+    for i in range(len(list_of_ids)):
+        book_dict.append(find_book_by_id(list_of_ids[i]))
+    print(book_dict)
+    return book_dict
+
+
 def list_books():
     key="title"
     # [i[key] for i in books] -> magic?
     values_of_key = [i[key] for i in books]
     return values_of_key
+
+def find_book_by_id(id):
+    for i in range(len(books)):
+        if str(id) == str(books[i]['detail']['isbn-13']):
+            return books[i]
 
 def find_book_by_title(title):
     keys_list = list_books()
@@ -38,13 +52,13 @@ def find_book_by_title(title):
 
 def find_book(by_what, value):
     if by_what == "title":
-        return find_book_by_title(value)
+        return return_books(list_books_title(value))
     else:
         if by_what == "author":
-            return list_books_author(value)
+            return return_books(list_books_author(value))
         else:
             if by_what == "genre":
-                return list_books_genre(value)
+                return return_books(list_books_genre(value))
             else:
                 print("User Error.")
                 return
@@ -63,6 +77,16 @@ def list_books_author(author_name):
     global_list_of_ids = list_books_id()
     for i in range(len(author_list)):
         if author_name in author_list[i]:
+            list_of_book_ids.append(str(global_list_of_ids[i]))
+    return list_of_book_ids
+
+def list_books_title(title):
+    key="title"
+    list_of_book_ids = []
+    title_list = [i[key] for i in books]
+    global_list_of_ids = list_books_id()
+    for i in range(len(title_list)):
+        if title in title_list[i]:
             list_of_book_ids.append(str(global_list_of_ids[i]))
     return list_of_book_ids
 
