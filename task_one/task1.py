@@ -15,7 +15,7 @@ def is_anagram(word1, word2):
     else:
         return "NOT ANAGRAMS"
 
-def evens_count(list_of_nums):
+def events_count(list_of_nums):
     count = 0
     for i in list_of_nums:
         if i % 2 == 0:
