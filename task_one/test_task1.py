@@ -73,3 +73,6 @@ def test_find_book():
     assert find_book("genre", "program") == both
     assert find_book("author", "Dan") == single
     assert find_book("title", "Python") == both
+
+def test_book_sorter():
+    assert sort_books(["9781775093305", "9781491946008"]) == {'9781775093305': {"{'title': 'Python Tricks: A Buffet of Awesome Python Features', 'author': 'Dan Bader', 'genre': 'programming Python', 'detail': {'publication_year': 2017, 'isbn-13': 9781775093305, 'language': 'English', 'pages': 302}}"}, '9781491946008': {"{'title': 'Fluent Python: Clear, Concise, and Effective Programming', 'author': 'Luciano Ramalho', 'genre': 'programming Python', 'detail': {'publication_year': 2015, 'isbn-13': 9781491946008, 'language': 'English', 'pages': 792}}"}}
