@@ -1,31 +1,26 @@
 def triangle_type(a, b, c):
     if a==b==c:
-        print("равностранен")
-        return
+        return "равностранен"
     if a==b or b==c or c==a:
-        print("равнобедрен")
-        return
+        return "равнобедрен"
     else:
-        print("разностранен")
-        return
+        return "разностранен"
 
 
 def is_anagram(word1, word2):
     word1=word1.lower()
     word2=word2.lower()
     if sorted(word1)==sorted(word2):
-        print("ANAGRAMS")
+        return "ANAGRAMS"
     else:
-        print("NOT ANAGRAMS")
-    return
+        return "NOT ANAGRAMS"
 
 def evens_count(list_of_nums):
     count = 0
     for i in list_of_nums:
         if i % 2 == 0:
             count+=1
-    print("Number of even number: ",count)
-    return
+    return count
 
 def word_counter(list_of_words, word):
     count = 0
@@ -53,38 +48,9 @@ def count_substrings(sentence, sub):
             count+=1
             continue
         i+=1
-    print(count)
     return count
 
-###############overly complicated...################
-############### UNUSED ################
-def dictionary_generator(start, end):
-    diff = end - start
-    diff = abs(diff)
-    key_list = []
-    dic = ""
-    for i in range(diff+1):
-        value = 5%(i+start)
-        temp_key = i+start
-        temp_value = int(round(value))
-        temp_dic = str(temp_key)+":"+str(temp_value)
-        if dic == "":
-            dic = temp_dic
-            continue
-        dic = dic+", "+temp_dic
-    key_list.append(dic)
-### How do I convert key_list(list) -> key_list(dic)
-### ['3:2, 4:1, 5:0'] -> {3:2, 4:1, 5:0}
-    final_dic = {str(key_list[0])}
-### Fixed by simply creating a dic
-### and filling it with the value of the list key_list[0]
-
-### doesn't work as it counts the whole str as 1 key
-    print(final_dic)
-############### UNUSED ################
-
-
-def new_dict_generator(start, end):
+def dict_generator(start, end):
     dict_final= ""
     diff = end - start
     diff = abs(diff)
@@ -101,25 +67,6 @@ def new_dict_generator(start, end):
         temp_value = int(round(value))
         temp_update = {temp_key:temp_value}
         dict_final.update(temp_update)
-    print(dict_final)
+    return dict_final
 
-import books
-a = input("Value of a: ")
-b = input("Value of b: ")
-c = input("Value of c: ")
-triangle_type(a,b,c)
-
-word1 = input("First word:")
-word2 = input("Second word:")
-is_anagram(word1, word2)
-
-nums = [1,2,3,4,5,1,2,9,4,5]
-evens_count(nums)
-
-print("Number of times the word ""word"" is repeated: ", word_counter(['list','python','word',], 'word'))
-
-print("Sub strings This is this and that is this. ~this~")
-count_substrings("This is this and that is this", "this")
-
-print("Key/Value between 3 and 5: ")
-new_dict_generator(3,5)
+print(dict_generator(3,5))

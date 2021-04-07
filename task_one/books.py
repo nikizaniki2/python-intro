@@ -29,7 +29,6 @@ def list_books():
     values_of_key = [i[key] for i in books]
     return values_of_key
 
-
 def find_book_by_title(title):
     keys_list = list_books()
     for i in range(len(keys_list)):
@@ -47,7 +46,7 @@ def find_book(by_what, value):
             if by_what == "genre":
                 return list_books_genre(value)
             else:
-                print("Wrong selection.")
+                print("User Error.")
                 return
 
 def list_books_id():
@@ -76,9 +75,3 @@ def list_books_genre(genre_name):
         if genre_name in genre_list[i]:
             list_of_book_ids.append(str(global_list_of_ids[i]))
     return list_of_book_ids
-
-list_books()
-print(find_book_by_title("asd"))
-print(find_book("genre", "program"))
-print(find_book("author", "Luciano"))
-print(find_book("title", "Python"))
