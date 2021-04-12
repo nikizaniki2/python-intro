@@ -28,15 +28,34 @@ def encrypt(key):
         return wrapper
     return _inner
 
-#TODO: log decorator.
-#TODO: performance decorator
-# def log(file):
-#     def _inner(func):
-#         def wrapper(*args, **kwargs):
+#DONE: log decorator.
+def log(name_of_file):
+    def _inner(func):
+        def wrapper(*args, **kwargs):
+            return_info = func()
+            import logging
+            from datetime import datetime
+            logging.basicConfig(filename=name_of_file, level=logging.INFO)
+            logging.info('\n{} was called at {}'.format(func.__name__, datetime.now()))
+            return return_info
+        return wrapper
+    return _inner
 
-#             return pass
-#         return wrapper
-#     return _inner
+#DONE: performance decorator
+
+def performance(name_of_file):
+    def _inner(func):
+        def wrapper(*args, **kwargs):
+            return_info = func()
+            import logging
+            import time
+            logging.basicConfig(filename=name_of_file, level=logging.INFO)
+            t1 = time.time()
+            t2 = time.time() - t1
+            logging.info('\n{} was called and took {} seconds to complete'.format(func.__name__, t2))
+            return return_info
+        return wrapper
+    return _inner
 
 def gt(num):
     def _inner(input):
@@ -110,3 +129,11 @@ def temp_func(num, character):
 @encrypt(2)
 def get_low():
     return "Get get get low"
+
+@log('log.txt')
+@performance('log.txt')
+def does_sleep():
+    import time
+    time.sleep(0.2)
+    #short sleep for testing purposes.
+    return

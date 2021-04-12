@@ -64,3 +64,6 @@ def test_accept_dec():
 
 def test_return_encrypt():
     assert get_low() == "Igv igv igv nqy"
+
+def test_does_sleep():
+    assert does_sleep() == None
