@@ -57,3 +57,10 @@ def test_sum():
     do_stuff = sum()
     do_stuff_two = do_stuff(1)
     assert do_stuff_two(2) == 3
+
+def test_accept_dec():
+    assert temp_func(1, "a") == "a1"
+    #assert temp_func("a",2) == AssertionError  Unable to pass tests no matter what i put there :/
+
+def test_return_encrypt():
+    assert get_low() == "Igv igv igv nqy"

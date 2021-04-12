@@ -1,3 +1,43 @@
+def accepts(*types):
+    def check_accepts(f):
+        assert len(types) == f.__code__.co_argcount
+        def new_f(*args, **kwds):
+            for (a, t) in zip(args, types):
+                assert isinstance(a, t), \
+                       "TypeError: Argument %r is not %s" % (a,t)
+            return f(*args, **kwds)
+        new_f.__name__ = f.__name__
+        return new_f
+    return check_accepts
+#stackoverflow paste...
+# *args, **kwargs let's a func take any number of args 
+# "Then it will accept an arbitrary number of positional and keyword arguments."
+
+def encrypt(key):
+    def _inner(func):
+        def wrapper(*args, **kwargs):
+            original_string = func()
+            encrypted_string = ""
+            for char in original_string:
+                if char == " ":
+                    encrypted_string += char
+                    continue
+                temp = ord(char) + key
+                encrypted_string += chr(temp)
+            return encrypted_string
+        return wrapper
+    return _inner
+
+#TODO: log decorator.
+#TODO: performance decorator
+# def log(file):
+#     def _inner(func):
+#         def wrapper(*args, **kwargs):
+
+#             return pass
+#         return wrapper
+#     return _inner
+
 def gt(num):
     def _inner(input):
         return input > num
@@ -59,11 +99,14 @@ def pred_lambda(func):
 
 pred_one_liner = lambda func: lambda input: func(input)
 
-# TODO: Fix uses of if (lambda)
-# TODO: Redo funcs with labdas, one liner, same as now but no ifs
-# TODO: tests for every func
-
-# TODO: 2 nested funcs ->
-
+# DONE: 2 nested funcs ->
 def sum():
     return lambda num_one: lambda num_two: num_one + num_two
+
+@accepts(int,str)
+def temp_func(num, character):
+    return character + str(num)
+
+@encrypt(2)
+def get_low():
+    return "Get get get low"
