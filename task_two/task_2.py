@@ -1,3 +1,7 @@
+import logging
+import time
+from datetime import datetime
+
 def accepts(*types):
     def check_accepts(f):
         assert len(types) == f.__code__.co_argcount
@@ -33,8 +37,6 @@ def log(name_of_file):
     def _inner(func):
         def wrapper(*args, **kwargs):
             return_info = func()
-            import logging
-            from datetime import datetime
             logging.basicConfig(filename=name_of_file, level=logging.INFO)
             logging.info('\n{} was called at {}'.format(func.__name__, datetime.now()))
             return return_info
@@ -47,8 +49,6 @@ def performance(name_of_file):
     def _inner(func):
         def wrapper(*args, **kwargs):
             return_info = func()
-            import logging
-            import time
             logging.basicConfig(filename=name_of_file, level=logging.INFO)
             t1 = time.time()
             t2 = time.time() - t1
