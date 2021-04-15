@@ -1,8 +1,17 @@
 # Create dict by {} or dict()
 
 class MyDict:
+    # Warning: dont use default parameters of mutable types
+    # as next instances will refer them by name and cause side effects.
+    # Make a copy instead.
     def __init__(self, init_value = {}):
-        self.dictionary = init_value
+        # Expand/spread key-value pairs
+        # self.dictionary = dict(init_value)
+        self.dictionary = { **init_value }
+
+    # https://realpython.com/python-kwargs-and-args/
+    def method(self, *args, **kwargs):
+        pass
 
     def get(self, key):
         # Return value by key or None
