@@ -30,27 +30,40 @@ class MyDict:
     def __getitem__(self, key):
         keys = list(self.dictionary.keys())
         return str(keys[key]), self.dictionary.get(keys[key])
+        
 
+class MyOrderedDict(MyDict):
+    def __init__(self):
+        self.tracker = []
+        super().__init__(init_value = {})
 
+    def get_order(self):
+        return self.tracker
 
-# d = MyDict()
-# d.add("Nikola", "11111") # Creates key
-# d.add("Simo", "2222") # Creates key
-# d.add("Nikola", "3333") # Updates existing
-# d.remove("Nikola") # Only Simo key left
-# d.get("Simo") # 2222
-# d.get("Nikola") # None
+    def get(self, key):
+        super().get(key)
+        return self.dictionary.get(key)
 
-# # LEARN: Magic methods / Special methods / dunders (__<method>__)
-# d["Simo"] = 2222
-# d.remove("Simo")
+    def add(self, key, value):
+        #Don't append on change!!!
+        if key in self.tracker:
+            super().add(key, value)
+            return
+        self.tracker.append(key)
+        super().add(key, value)
+    
+    def remove(self, key):
+        self.tracker.remove(key)
+        super().remove(key)
 
-# d["First"] = 1 
-# d["Second"] = 2
-# d["Third"] = 3
+    def __setitem__(self, key, value):
+        self.tracker.append(key)
+        super().__setitem__(key, value)
 
-# d[0] # Returns ("First", 1) 
-# d[1] # Returns ("Second", 2) 
-# d[2] # Returns ("Third", 3)
-
-# # Hashing: unique input -> unique hash string
+    def __getitem__(self, key):
+        return super().__getitem__(key)
+    
+    def clear(self):
+        for i in self.tracker:
+            super().remove(i)
+            self.tracker.remove(i)

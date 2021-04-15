@@ -5,7 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: loadbalancer test",
+            "name": "Python: Default",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: pytest",
             "type": "python",
             "request": "launch",
             "module": "pytest",
@@ -14,6 +21,6 @@
                 // Comment out to run all tests
                 "${workspaceFolder}/dict_class/test_dict_class.py"
             ]
-        },
+        }
     ]
 }
