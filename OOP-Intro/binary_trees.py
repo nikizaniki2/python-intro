@@ -2,10 +2,16 @@
 # https://www.geeksforgeeks.org/binarytree-module-in-python/
 # https://www.tutorialspoint.com/python_data_structure/python_binary_tree.htm
 
-global list_return
-list_return = []
+
+# tree = MyBinTree(8) => [None, 8, None] 
+# tree.add(2) => [[None, 2, None], 8, None]
+# tree.add(4) => [[[None, 2, None], 4, [None]], 8, None]
+# tree.add(5) => [[[None, 2, None], 4, [None, 5, None]], 8, None]
 
 class MyBinTree:
+
+    list_return = []
+
     def __init__(self, value):
         self.value = value
         self.left = None
@@ -31,15 +37,32 @@ class MyBinTree:
         # а след това и всички отрицателни стойности от върховете на дадено двоично дърво
 
         # calls print_tree of the current objs "left" obj
-        # this is iteration using recursion 😮
+        # this is iteration using recursion
         # we want to get the right-most item and print it first.
+        
+        
+        # tree.add(2) => [[None, 2, None], 8, None]
+        # Why [2, 8] and not [8, 2]?
+
         if self.right:
             self.right.print_tree()
-        list_return.append(self.value)
+        self.list_return.append(self.value)
         #print(self.value)
         if self.left:
             self.left.print_tree()
-        return list_return
+        return self.list_return
+
+    # filter, map, reduce
+    # Filter: filter(pred_func, iterable)
+
+# DOESNT WORK
+    # def sum_even(self):
+    #     return sum(
+    #         filter(
+    #             lambda x: x % 2 == 0, # predicate
+    #             self.print_tree() # iterable
+    #         )
+    #     )
 
 # Да се напише програма, която намира сумата на четните стойности от върховете на дадено двоично дърво.
     def inorderTraversal(self, item):
@@ -50,7 +73,7 @@ class MyBinTree:
             res = res + self.inorderTraversal(item.right)
         return res
 
-    def check_even(self):
+    def sum_even(self):
         even_amount = 0
         list_from_tree = self.inorderTraversal(self)
         for i in list_from_tree:

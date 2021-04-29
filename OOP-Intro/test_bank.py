@@ -26,7 +26,7 @@ def test_transfer_to():
     rado = BankAccount("Rado", 1000, "BGN")
     ivo = BankAccount("Ivo", 0, "BGN")
     assert rado.transfer_to(ivo, 500) == True
-    assert rado.transfer_to(ivo, 501) == False
+    assert rado.transfer_to(ivo, 501) == None
 
 def test_history():
     rado = BankAccount("Rado", 1000, "BGN")

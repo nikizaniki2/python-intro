@@ -14,4 +14,4 @@ def test_check_even():
     tree.add(-1)
     tree.add(3)
     tree.add(-15)
-    assert tree.check_even() == 1
+    assert tree.sum_even() == 1

@@ -50,7 +50,7 @@ class BankAccount:
     def transfer_to(self, account, amount):
         if account.currency not in self.currency:
             #if they both have the same currencies!
-            return False
+            return
 
         if self.withdraw(amount):
             account.deposit(amount)
@@ -58,7 +58,7 @@ class BankAccount:
             account.history.append("Transfer from " + self.name + " for " + str(amount) + str(self.currency))
             #Returns True if successful.
             return True
-        return False
 
     #history() - returns a list of strings, that represent the history of the bank account.
-    get_history = lambda self: self.history
+    def get_history(self):
+        return self.history
