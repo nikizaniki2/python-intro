@@ -82,11 +82,10 @@ def zip_with(func, *iterables):
         if len(shortest_iterable) > len(iterables[i]):
             shortest_iterable = iterables[i]
 
+    curr_item = []
     i = None
     for i in range(0, len(shortest_iterable)):
-        yield concat3(iterables[0][i], iterables[1][i], iterables[2][i])
-
-first_names = ['John', 'Miles']
-last_names = ['Coltrane', 'Davis']
-spaces = [' '] * 2
-print(list(zip_with(concat3, first_names, spaces, last_names)))
+        for j in range(0, len(iterables)):
+            curr_item.append(iterables[j][i])
+        yield func(*curr_item)
+        curr_item.clear()
